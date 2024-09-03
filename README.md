@@ -33,7 +33,10 @@ Create a mobile application using React Native that encompasses the following:
    - One complex component.
    - One helper function.
    - One API request.
+- Ensure that the entire application test suite is passing.
 - Ensure that your solution accounts for edge cases and handles unusual or unexpected scenarios effectively.
+- Ensure that your code is passing TypeScript compiler and ESLint checks.
+   - These jobs have already been defined in package.json.
 - Don’t spend longer than 2 hours on this technical test.
 - Don’t focus too much time on the visual aspects of the app, favour simple layouts and basic styling using React Native libraries over using a UI kit.
 
