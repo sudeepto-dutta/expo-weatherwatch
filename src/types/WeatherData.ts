@@ -10,10 +10,13 @@ export interface WeatherData {
     time: string;
     interval: number;
     temperature_2m: number;
+    is_day: number;
+    weather_code: number;
   };
-  hourly: {
+  daily: {
     time: string[];
-    temperature_2m: number[];
     weather_code: number[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
   };
 }

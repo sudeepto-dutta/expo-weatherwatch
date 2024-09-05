@@ -6,7 +6,7 @@ type WeatherImage = Record<
   }
 >;
 
-type WeatherCode =
+export type WeatherCode =
   | '0'
   | '1'
   | '2'
@@ -326,11 +326,12 @@ const items: Record<WeatherCode, WeatherImage> = {
  * The image mapping was obtained from Github and uses Open Weather Map imagery.
  * @{link: https://gist.github.com/stellasphere/9490c195ed2b53c707087c8c2db4ec0c}
  * @param weatherCode The WMO weather code
- * @returns A "day" image representation of the WMO weather code
+ * @returns A "day" or "night" image representation of the WMO weather code
  */
-function getWeatherImage(weatherCode: WeatherCode) {
-  // Write implementation for this function to return the "day" image for a given weather code.
-  return items[weatherCode].day.image;
+function getWeatherDataFromCode(weatherCode: WeatherCode, isDay: boolean): { description: string; image: string; } {
+  const isDayorNight = isDay ? 'day' : 'night';
+  return items[weatherCode][isDayorNight];
+  // return items[weatherCode].day.image
 }
 
-export default getWeatherImage;
+export default getWeatherDataFromCode;
