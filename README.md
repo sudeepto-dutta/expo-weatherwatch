@@ -1,6 +1,6 @@
 # 🌩️ Weather Watch
 
-Introducing *Weather Watch*, the app that delivers accurate weather forecasts, ensuring you’re always prepared for the day’s weather with a smile!
+Introducing _Weather Watch_, the app that delivers accurate weather forecasts, ensuring you’re always prepared for the day’s weather with a smile!
 
 This task is designed to evaluate your proficiency in mobile app development, particular with React Native and TypeScript.
 
@@ -10,8 +10,8 @@ Create a mobile application using React Native that encompasses the following:
 
 - Display the location name, current temperature and an image representation of the weather using a location of your choice when the application opens.
 - Display a weekly weather forecast for the selected location.
-   - Display an average temperature, rounded up.
-   - Display an image that best represents the weather for the day.
+  - Display an average temperature, rounded up.
+  - Display an image that best represents the weather for the day.
 - Include a search function that allows users to look up weather by a location name.
   - If there are multiple locations returned by the API, give the user an option to select one.
   - When selecting a location, the weather forecast should update.
@@ -30,14 +30,14 @@ Create a mobile application using React Native that encompasses the following:
 - Use React Native and TypeScript.
 - Ensure the app works on iOS and Android.
 - Showcase your software’s testing capabilities to ensure it meets requirements by testing:
-   - One complex component.
-   - One helper function.
-   - One API request.
+  - One complex component.
+  - One helper function.
+  - One API request.
 - Ensure that the entire application test suite is passing.
-   - Please do not remove any tests from the current project.
+  - Please do not remove any tests from the current project.
 - Ensure that your solution accounts for edge cases and handles unusual or unexpected scenarios effectively.
 - Ensure that your code is passing TypeScript compiler and ESLint checks.
-   - These jobs have already been defined in package.json.
+  - These jobs have already been defined in package.json.
 - Don’t spend longer than 2 hours on this technical test.
 - Don’t focus too much time on the visual aspects of the app, favour simple layouts and basic styling using React Native libraries over using a UI kit.
 

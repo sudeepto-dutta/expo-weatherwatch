@@ -1,6 +1,6 @@
 export const API_BASE_URLS = {
-  WEATHER: "https://api.open-meteo.com/v1/forecast",
-  GEOCODING: "https://geocoding-api.open-meteo.com/v1/search",
+  WEATHER: 'https://api.open-meteo.com/v1/forecast',
+  GEOCODING: 'https://geocoding-api.open-meteo.com/v1/search',
 };
 
 export const DEFAULT_LAT_LONG = {
@@ -9,4 +9,4 @@ export const DEFAULT_LAT_LONG = {
   longitude: -0.12574,
 };
 
-export const DEFAULT_CITY = "London";
+export const DEFAULT_CITY = 'London';

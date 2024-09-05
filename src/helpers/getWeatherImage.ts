@@ -328,7 +328,10 @@ const items: Record<WeatherCode, WeatherImage> = {
  * @param weatherCode The WMO weather code
  * @returns A "day" or "night" image representation of the WMO weather code
  */
-function getWeatherDataFromCode(weatherCode: WeatherCode, isDay: boolean): { description: string; image: string; } {
+function getWeatherDataFromCode(
+  weatherCode: WeatherCode,
+  isDay: boolean,
+): {description: string; image: string} {
   const isDayorNight = isDay ? 'day' : 'night';
   return items[weatherCode][isDayorNight];
   // return items[weatherCode].day.image

@@ -1,23 +1,22 @@
-import { WeatherData } from "../types/WeatherData";
-import { GeocodingData } from "../types/GeocodingData";
-import { API_BASE_URLS } from "../constants";
-import objectToQueryString from "../helpers/objectToQueryString";
+import {WeatherData} from '../types/WeatherData';
+import {GeocodingData} from '../types/GeocodingData';
+import {API_BASE_URLS} from '../constants';
+import objectToQueryString from '../helpers/objectToQueryString';
 
-const { GEOCODING, WEATHER} = API_BASE_URLS
+const {GEOCODING, WEATHER} = API_BASE_URLS;
 
 export const fetchWeatherData = async (
   latitude: number,
-  longitude: number
+  longitude: number,
 ): Promise<WeatherData> => {
-
   const queryParams = {
     latitude,
     longitude,
     current: 'temperature_2m,is_day,weather_code',
     daily: 'weather_code,temperature_2m_max,temperature_2m_min',
-    timezone: 'auto'
-  }
-  const queryString = objectToQueryString(queryParams)
+    timezone: 'auto',
+  };
+  const queryString = objectToQueryString(queryParams);
   const url = `${WEATHER}?${queryString}`;
 
   try {
@@ -28,23 +27,22 @@ export const fetchWeatherData = async (
     const data: WeatherData = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching weather data:", error);
+    console.error('Error fetching weather data:', error);
     throw error;
   }
 };
 
 export const fetchGeocodingData = async (
-  cityName: string
+  cityName: string,
 ): Promise<GeocodingData> => {
-
   const queryParams = {
     name: cityName,
     count: 10,
     language: 'en',
-    format: 'json'
-  }
+    format: 'json',
+  };
 
-  const queryString = objectToQueryString(queryParams)
+  const queryString = objectToQueryString(queryParams);
   const url = `${GEOCODING}?${queryString}`;
 
   try {
@@ -55,7 +53,7 @@ export const fetchGeocodingData = async (
     const data: GeocodingData = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching geocoding data:", error);
+    console.error('Error fetching geocoding data:', error);
     throw error;
   }
 };

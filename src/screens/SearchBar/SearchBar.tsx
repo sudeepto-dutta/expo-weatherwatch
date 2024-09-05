@@ -1,15 +1,9 @@
-import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Text,
-} from "react-native";
-import { fetchGeocodingData, fetchWeatherData } from "../../api/api";
-import { DEFAULT_LAT_LONG } from "../../constants";
-import SearchInput from "../../components/SearchInput";
-import SearchResultItem from "../../components/SearchItem";
+import React, {useState} from 'react';
+import {View, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native';
+import {fetchGeocodingData, fetchWeatherData} from '../../api/api';
+import {DEFAULT_LAT_LONG} from '../../constants';
+import SearchInput from '../../components/SearchInput';
+import SearchResultItem from '../../components/SearchItem';
 
 interface SearchBarProps {
   onLocationSelect: (location: {
@@ -20,10 +14,10 @@ interface SearchBarProps {
   onClose: () => void;
 }
 
-const SearchBar = ({ onLocationSelect, onClose }: SearchBarProps) => {
-  const [searchText, setSearchText] = useState<string>("");
+const SearchBar = ({onLocationSelect, onClose}: SearchBarProps) => {
+  const [searchText, setSearchText] = useState<string>('');
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  const { latitude, longitude } = DEFAULT_LAT_LONG;
+  const {latitude, longitude} = DEFAULT_LAT_LONG;
 
   const handleSearch = async () => {
     try {
@@ -34,7 +28,7 @@ const SearchBar = ({ onLocationSelect, onClose }: SearchBarProps) => {
         setSearchResults([]);
       }
     } catch (err) {
-      console.error("Error fetching geocoding data", err);
+      console.error('Error fetching geocoding data', err);
     }
   };
 
@@ -42,7 +36,7 @@ const SearchBar = ({ onLocationSelect, onClose }: SearchBarProps) => {
     try {
       const weatherData = await fetchWeatherData(
         selectedLocation?.latitude ?? latitude,
-        selectedLocation?.longitude ?? longitude
+        selectedLocation?.longitude ?? longitude,
       );
       onLocationSelect({
         latitude: weatherData.latitude,
@@ -51,7 +45,7 @@ const SearchBar = ({ onLocationSelect, onClose }: SearchBarProps) => {
       });
       onClose();
     } catch (err) {
-      console.error("Error fetching weather data", err);
+      console.error('Error fetching weather data', err);
     }
   };
 
@@ -69,10 +63,10 @@ const SearchBar = ({ onLocationSelect, onClose }: SearchBarProps) => {
       </View>
       {searchResults.length > 0 && (
         <FlatList
-          style={{ width: "100%" }}
+          style={{width: '100%'}}
           data={searchResults}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => (
             <SearchResultItem item={item} onSelect={handleItemSelect} />
           )}
         />
@@ -83,16 +77,16 @@ const SearchBar = ({ onLocationSelect, onClose }: SearchBarProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    flexDirection: "column",
-    alignItems: "center",
+    width: '100%',
+    flexDirection: 'column',
+    alignItems: 'center',
     marginBottom: 20,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
     marginBottom: 10,
   },
   closeIcon: {

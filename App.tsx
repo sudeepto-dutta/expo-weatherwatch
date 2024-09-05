@@ -1,5 +1,5 @@
-import { SafeAreaView, StyleSheet } from "react-native";
-import HomeScreen from "./src/screens/HomeScreen/HomeScreen";
+import {SafeAreaView, StyleSheet} from 'react-native';
+import HomeScreen from './src/screens/HomeScreen/HomeScreen';
 
 const App = () => (
   <SafeAreaView style={styles.container}>
@@ -9,8 +9,8 @@ const App = () => (
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    backgroundColor: "#fff"
-  }
-})
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});
 export default App;
