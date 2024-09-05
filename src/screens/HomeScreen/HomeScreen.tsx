@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from "react-native";
 import { fetchWeatherData } from "../../api/api";
 import { WeatherData } from "../../types/WeatherData";
 import { DEFAULT_LAT_LONG, DEFAULT_CITY } from "../../constants";
-import getWeatherImage, { WeatherCode } from "../../helpers/getWeatherImage";
+import { WeatherCode } from "../../helpers/getWeatherImage";
 import WeatherDisplay from "../../components/WeatherDisplay";
 import SearchBar from "../SearchBar/SearchBar";
 import getWeatherDataFromCode from "../../helpers/getWeatherImage";
+import WeeklyForecast from "../../components/WeeklyForecast";
 
 const HomeScreen: React.FC = () => {
   const { latitude, longitude } = DEFAULT_LAT_LONG;
@@ -16,6 +17,7 @@ const HomeScreen: React.FC = () => {
     longitude: number;
     name: string;
   }>({ latitude, longitude, name: DEFAULT_CITY });
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     console.log({ locationData });
@@ -23,9 +25,7 @@ const HomeScreen: React.FC = () => {
       locationData?.latitude ?? latitude,
       locationData?.longitude ?? longitude
     );
-  }, [locationData.latitude, locationData.longitude]);
-
-  useEffect(() => {}, []);
+  }, []);
 
   const getWeather = async (latitude: number, longitude: number) => {
     try {
@@ -43,7 +43,7 @@ const HomeScreen: React.FC = () => {
   }) => {
     console.log({ selectedLocation });
     setLocationData(selectedLocation);
-    // Fetch new weather data based on selected location
+    setModalVisible(false);
   };
 
   if (!weatherData) {
@@ -56,7 +56,26 @@ const HomeScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <SearchBar onLocationSelect={handleLocationSelect} />
+      <TouchableOpacity
+        style={styles.searchIcon}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.searchIconText}>🔍</Text>
+      </TouchableOpacity>
+
+      <Modal
+        animationType="slide"
+        style={{ backgroundColor: "#ccc" }}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <SearchBar
+            onClose={() => setModalVisible(false)}
+            onLocationSelect={handleLocationSelect}
+          />
+        </View>
+      </Modal>
       <WeatherDisplay
         locationName={locationData.name}
         temperature={weatherData.current.temperature_2m}
@@ -65,7 +84,7 @@ const HomeScreen: React.FC = () => {
           Boolean(weatherData.current.is_day)
         )}
       />
-      {/* Add Weekly Forecast Component Here */}
+      <WeeklyForecast daily={weatherData.daily} />
     </View>
   );
 };
@@ -74,9 +93,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 10,
-    // backgroundColor: "#fff",
     alignItems: "center",
-    // justifyContent: "center",
+    marginHorizontal: 10,
+  },
+  searchIcon: { position: "absolute", top: 10, right: 10, padding: 10 },
+  searchIconText: { fontSize: 24 },
+  modalContainer: {
+    flex: 1,
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "white",
+    marginTop: 20,
   },
 });
 

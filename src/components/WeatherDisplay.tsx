@@ -14,11 +14,6 @@ const WeatherDisplay = ({ locationName, temperature, weatherInfo }: WeatherDispl
     <View style={styles.container}>
         <Text style={styles.locationName}>{locationName}</Text>
         <Text style={styles.temperature}>{temperature}°C</Text>
-        {/* TODO: If possible, add High & Low Temperature for the current day */}
-        {/* <View style={styles.tempHighLow}>
-          <Text style={styles.tempHightLowText}>H: {temperature}°C</Text>
-          <Text style={styles.tempHightLowText}>L: {temperature}°C</Text>
-        </View> */}
         <Image source={{ uri: weatherInfo.image }} style={styles.image} />
         <Text style={styles.weatherDescription}>{weatherInfo.description}</Text>
     </View>
@@ -46,10 +41,12 @@ const styles = StyleSheet.create({
   },
   weatherDescription: {
     fontSize: 15,
+    marginBottom: 10,
+    fontStyle: "italic"
   },
   image: {
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
   },
 });
 
