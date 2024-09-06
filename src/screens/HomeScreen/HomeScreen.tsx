@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import {fetchWeatherData} from '../../api/api';
 import {WeatherData} from '../../types/WeatherData';
@@ -17,19 +17,25 @@ const HomeScreen: React.FC = () => {
     longitude: number;
     name: string;
   }>({latitude, longitude, name: DEFAULT_CITY});
+  const latitudeRef = useRef<number | null>(null);
+  const longitudeRef = useRef<number | null>(null);
+
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    console.log({locationData});
-    getWeather(
-      locationData?.latitude ?? latitude,
-      locationData?.longitude ?? longitude,
-    );
+    latitudeRef.current = latitude;
+    longitudeRef.current = longitude;
+  }, [latitude, longitude]);
+
+  useEffect(() => {
+    if (latitudeRef.current !== null && longitudeRef.current !== null) {
+      getWeather(latitudeRef.current, longitudeRef.current);
+    }
   }, []);
 
-  const getWeather = async (latitude: number, longitude: number) => {
+  const getWeather = async (lat: number, long: number) => {
     try {
-      const data = await fetchWeatherData(latitude, longitude);
+      const data = await fetchWeatherData(lat, long);
       setWeatherData(data);
     } catch (err) {
       console.error('Error fetching weather data', err);
@@ -64,7 +70,7 @@ const HomeScreen: React.FC = () => {
 
       <Modal
         animationType="slide"
-        style={{backgroundColor: '#ccc'}}
+        style={styles.searchModal}
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalContainer}>
@@ -103,6 +109,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginTop: 20,
   },
+  searchModal: {backgroundColor: '#ccc'},
 });
 
 export default HomeScreen;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity, Text} from 'react-native';
 import {fetchGeocodingData, fetchWeatherData} from '../../api/api';
 import {DEFAULT_LAT_LONG} from '../../constants';
@@ -63,7 +63,7 @@ const SearchBar = ({onLocationSelect, onClose}: SearchBarProps) => {
       </View>
       {searchResults.length > 0 && (
         <FlatList
-          style={{width: '100%'}}
+          style={styles.searchResultFlatList}
           data={searchResults}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   closeIconText: {
     fontSize: 20,
   },
+  searchResultFlatList: {width: '100%'},
 });
 
 export default SearchBar;

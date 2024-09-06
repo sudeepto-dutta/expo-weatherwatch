@@ -1,4 +1,3 @@
-import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {WeatherData} from '../types/WeatherData';
 import getWeatherDataFromCode, {WeatherCode} from '../helpers/getWeatherImage';
@@ -91,6 +90,7 @@ const styles = StyleSheet.create({
   temperature: {
     fontSize: 16,
     width: 50,
+    textAlign: 'right',
   },
 });
 
