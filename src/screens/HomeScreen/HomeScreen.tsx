@@ -3,11 +3,12 @@ import {View, Text, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import {fetchWeatherData} from '../../api/api';
 import {WeatherData} from '../../types/WeatherData';
 import {DEFAULT_LAT_LONG, DEFAULT_CITY} from '../../constants';
-import {WeatherCode} from '../../helpers/getWeatherImage';
 import WeatherDisplay from '../../components/WeatherDisplay';
 import SearchBar from '../SearchBar/SearchBar';
-import getWeatherDataFromCode from '../../helpers/getWeatherImage';
 import WeeklyForecast from '../../components/WeeklyForecast';
+import getWeatherDataFromCode, {
+  WeatherCode,
+} from '../../helpers/getWeatherDataFromCode';
 
 const HomeScreen: React.FC = () => {
   const {latitude, longitude} = DEFAULT_LAT_LONG;
@@ -61,7 +62,7 @@ const HomeScreen: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="home-screen">
       <TouchableOpacity
         style={styles.searchIcon}
         onPress={() => setModalVisible(true)}>

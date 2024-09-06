@@ -1,12 +1,10 @@
 import 'react-native';
 import App from '../App';
+import {render, screen, waitFor} from '@testing-library/react-native';
 
-import {render, screen} from '@testing-library/react-native';
-
-it('should render the App', () => {
+it('should render the App with HomeScreen', async () => {
   render(<App />);
 
-  expect(
-    screen.getByText('Open up App.tsx to start working on your app!'),
-  ).toBeTruthy();
+  // Wait for the HomeScreen component to be rendered
+  await waitFor(() => expect(screen.getByTestId('home-screen')).toBeTruthy());
 });

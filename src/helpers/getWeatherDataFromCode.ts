@@ -334,7 +334,6 @@ function getWeatherDataFromCode(
 ): {description: string; image: string} {
   const isDayorNight = isDay ? 'day' : 'night';
   return items[weatherCode][isDayorNight];
-  // return items[weatherCode].day.image
 }
 
 export default getWeatherDataFromCode;

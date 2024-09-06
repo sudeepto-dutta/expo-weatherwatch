@@ -1,6 +1,8 @@
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {WeatherData} from '../types/WeatherData';
-import getWeatherDataFromCode, {WeatherCode} from '../helpers/getWeatherImage';
+import getWeatherDataFromCode, {
+  WeatherCode,
+} from '../helpers/getWeatherDataFromCode';
 
 interface WeeklyForecastProps {
   daily: WeatherData['daily'];
