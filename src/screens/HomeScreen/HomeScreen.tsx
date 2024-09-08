@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Modal} from 'react-native';
 import {fetchWeatherData} from '../../api/api';
 import {WeatherData} from '../../types/WeatherData';
@@ -11,28 +11,20 @@ import getWeatherDataFromCode, {
 } from '../../helpers/getWeatherDataFromCode';
 
 const HomeScreen: React.FC = () => {
-  const {latitude, longitude} = DEFAULT_LAT_LONG;
+  const {defaultLat, defaultLong} = DEFAULT_LAT_LONG;
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [locationData, setLocationData] = useState<{
     latitude: number;
     longitude: number;
     name: string;
-  }>({latitude, longitude, name: DEFAULT_CITY});
-  const latitudeRef = useRef<number | null>(null);
-  const longitudeRef = useRef<number | null>(null);
+  }>({latitude: defaultLat, longitude: defaultLong, name: DEFAULT_CITY});
 
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    latitudeRef.current = latitude;
-    longitudeRef.current = longitude;
-  }, [latitude, longitude]);
-
-  useEffect(() => {
-    if (latitudeRef.current !== null && longitudeRef.current !== null) {
-      getWeather(latitudeRef.current, longitudeRef.current);
-    }
-  }, []);
+    const {latitude, longitude} = locationData;
+    getWeather(latitude, longitude);
+  }, [locationData]);
 
   const getWeather = async (lat: number, long: number) => {
     try {
@@ -48,7 +40,6 @@ const HomeScreen: React.FC = () => {
     longitude: number;
     name: string;
   }) => {
-    console.log({selectedLocation});
     setLocationData(selectedLocation);
     setModalVisible(false);
   };

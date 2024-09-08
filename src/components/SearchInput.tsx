@@ -24,11 +24,13 @@ const SearchInput = ({
         placeholder="Search location..."
         value={searchText}
         onChangeText={setSearchText}
-        onSubmitEditing={onSearch}
+        onSubmitEditing={searchText.length > 0 ? onSearch : () => {}}
       />
-      <TouchableOpacity onPress={onSearch} style={styles.searchIcon}>
-        <Text style={styles.searchIconText}>🔍</Text>
-      </TouchableOpacity>
+      {searchText.length > 0 && (
+        <TouchableOpacity onPress={onSearch} style={styles.searchIcon}>
+          <Text style={styles.searchIconText}>🔍</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -46,6 +48,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    minHeight: 35,
   },
   searchIcon: {
     padding: 5,

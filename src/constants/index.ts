@@ -5,8 +5,8 @@ export const API_BASE_URLS = {
 
 export const DEFAULT_LAT_LONG = {
   /* Default latitude & longitude for London */
-  latitude: 51.50853,
-  longitude: -0.12574,
+  defaultLat: 51.50853,
+  defaultLong: -0.12574,
 };
 
 export const DEFAULT_CITY = 'London';

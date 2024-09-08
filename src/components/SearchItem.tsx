@@ -9,7 +9,9 @@ const SearchResultItem = ({item, onSelect}: SearchResultItemProps) => {
   return (
     <TouchableOpacity style={styles.resultItem} onPress={() => onSelect(item)}>
       <Text style={styles.resultText}>{item.name}</Text>
-      <Text style={[styles.resultCountry]}>{item.country}</Text>
+      <Text style={[styles.resultCountry]}>
+        {item.admin1 ? `${item.admin1}, ${item.country}` : item.country}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -27,10 +29,12 @@ const styles = StyleSheet.create({
   resultText: {
     fontSize: 16,
     flexWrap: 'wrap',
-    width: '60%',
+    flex: 0.5,
   },
   resultCountry: {
     textAlign: 'right',
+    flexWrap: 'wrap',
+    flex: 0.5,
   },
 });
 
