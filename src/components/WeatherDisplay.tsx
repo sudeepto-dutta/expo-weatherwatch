@@ -17,7 +17,16 @@ const WeatherDisplay = ({
   <View style={styles.container}>
     <Text style={styles.locationName}>{locationName}</Text>
     <Text style={styles.temperature}>{temperature}°C</Text>
-    <Image source={{uri: weatherInfo.image}} style={styles.image} />
+    {/* NOTE: The conditional rendering of Image below is done to demonstrate the test case
+      under __tests_/WeatherDisplay.test.tsx that showcases testing with conditional rendering
+      of Image element */}
+    {weatherInfo.image && (
+      <Image
+        source={{uri: weatherInfo.image}}
+        style={styles.image}
+        testID="weather-image"
+      />
+    )}
     <Text style={styles.weatherDescription}>{weatherInfo.description}</Text>
   </View>
 );
